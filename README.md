@@ -6,5 +6,5 @@ To run tha app:
 - launch src/Congratulator/congratulations_sender.py
 
 Screenshots:
-![](C:\Users\Иван\PycharmProjects\Congratulator\tests\1.jpg)
-![](C:\Users\Иван\PycharmProjects\Congratulator\tests\2.jpg)
+![](https://github.com/JackSlater777/Congratulator/blob/main/img/1.jpg)
+![](https://github.com/JackSlater777/Congratulator/blob/main/img/2.jpg)
