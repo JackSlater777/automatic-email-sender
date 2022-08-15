@@ -1,15 +1,18 @@
 import sqlite3
 import json
+# import os
 from datetime import datetime
 
 
 # Узнаем E-mail'ы именинников
 def find_birthday(d, email_lst, name_lst):
     # Файл базы данных
-    # db_name = "BirthdaysDB.db"
     with open("databaseconfig.json") as json_data_file:
         data = json.load(json_data_file)
-    # print(data['mysql']['db'])
+    # Относительный путь в JSON
+    print(data['mysql']['db'])
+    # # Абсолютный путь
+    # db_path = os.path.abspath(data['mysql']['db'])
     # Создаем соединение с нашей базой данных
     conn = sqlite3.connect(data['mysql']['db'])
     cur = conn.cursor()
