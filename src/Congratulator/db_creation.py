@@ -1,4 +1,5 @@
 import sqlite3
+import os
 
 
 # Конфигурирование базы данных
@@ -7,13 +8,11 @@ def configure_db(conn):
     cur = conn.cursor()
     # Делаем CREATE запрос к базе данных, используя обычный SQL-синтаксис
     # Создаем таблицу Employees
-    # cur.execute("CREATE TABLE Employees"
-    #             "    (Id        INTEGER    PRIMARY KEY  AUTOINCREMENT,"
-    #             "     Name      CHAR(128)  NOT NULL,"
-    #             "     Email     CHAR(128)  NOT NULL,"
-    #             "     Birthday  CHAR(128)  NOT NULL,")
     cur.execute('''CREATE TABLE Employees
                    (Id, Name, Email, Birthday)''')
+    # Создаем уникальный индекс по полю Birthday
+    cur.execute('''CREATE UNIQUE INDEX BirthdayId
+                   ON Employees(Birthday)''')
 
 
 # Добавление записей в таблицу Employees
@@ -27,18 +26,20 @@ def insert_employee(conn, id, name, email, birthday):
     conn.commit()
 
 
-# Файл базы данных
-db_name = 'example.db'
-# Создаем соединение с нашей базой данных
-# Если файл базы данных еще не создан, он создастся автоматически.
-con = sqlite3.connect(db_name)
-# Создаем таблицу
-configure_db(con)
-# Вставляем инфо о сотруднике в таблицу
-employee_id = 1
-employee_name = 'John'
-employee_email = 'example@gmail.com'
-employee_birthday = '1991-01-01'  # Формат строго такой (год-месяц-день)
-insert_employee(con, employee_id, employee_name, employee_email, employee_birthday)
-# Не забываем закрыть соединение с базой данных после работы
-con.close()
+if __name__ == '__main__':
+    # Файл базы данных
+    db_name = 'example.db'
+    db_exists = os.path.exists(db_name)  # Проверка существования базы данных
+    # Создаем соединение с нашей базой данных через менеджер контекста
+    # Если файл базы данных еще не создан, он создастся автоматически.
+    with sqlite3.connect(db_name) as con:
+        # Если базы данных не существует, создаем и заполняем
+        if not db_exists:
+            # Создаем таблицу
+            configure_db(con)
+            # Вставляем инфо о сотруднике в таблицу
+            employee_id = 1
+            employee_name = 'John'
+            employee_email = 'example@gmail.com'
+            employee_birthday = '01-01'  # Формат строго такой (месяц-день)
+            insert_employee(con, employee_id, employee_name, employee_email, employee_birthday)
