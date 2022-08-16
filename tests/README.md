@@ -1,4 +1,4 @@
 Coverage:
 
 
-![](https://github.com/JackSlater777/Congratulator/blob/main/img/coverage_find_birthday.png)
+![](https://github.com/JackSlater777/Congratulator/blob/main/img/coverage_test_find_birthday.png)
