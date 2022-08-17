@@ -2,7 +2,7 @@ Welcome to the Congratulator!
 
 
 To run tha app:
-- setup the path to your database in the src/Congratulator/databaseconfig.json file
+- setup the path to your database and e-mail sender in the src/Congratulator/databaseconfig.json file
 - setup the application password in the src/Congratulator/setenv.env file if you are using gmail server
 - launch src/Congratulator/congratulations_sender.py
 
