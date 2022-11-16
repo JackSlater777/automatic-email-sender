@@ -1,28 +1,11 @@
 import smtplib
-import os
-import json
 from email.mime.text import MIMEText
-from pathlib import Path
-from dotenv import load_dotenv
 from find_birthday import find_birthday
+from settings import sender, password
 
 
 # Функция отправки поздравления
 def send_congratulations(email, names):
-    # Загружаем переменные (пароли, пути файлов и т.д.)
-    dotenv_path = Path('./setenv.env')
-    load_dotenv(dotenv_path=dotenv_path)
-    password = os.environ.get('EMAIL_PASSWORD')
-    # Email отправителя в JSON-файле
-    with open("databaseconfig.json") as json_data_file:
-        data = json.load(json_data_file)
-    # # Относительный путь в JSON
-    # print(data['mysql']['user'])
-    # # Абсолютный путь
-    # sender_path = os.path.abspath(data['mysql']['db'])
-    # Вводим почту отправителя
-    sender = data['mysql']['user']
-    print(f"{sender=}")
     # Создаем сервер на основе gmail
     server = smtplib.SMTP('smtp.gmail.com', 587)
     # Предусмотриваем отлов исключений при любых взаимодействиях с сервером
