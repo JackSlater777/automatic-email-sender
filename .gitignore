@@ -1,7 +1,7 @@
-# Created by me
-/__pycache__
-/.idea
-/.pytest_cache/
-/cov_html
-/venv
-/.coverage
+__pycache__/
+.idea/
+.pytest_cache/
+cov_html/
+venv/
+.coverage
+setenv.env
