@@ -1,0 +1,8 @@
+По congratulator:
+
+3. По find_birthday.py:
++ Чтоб обращаться к возвращенным записям не по индексам (row[2], row[1]), а по названиям столбцов row['Name'], нужно 
+при подключении к базе установить conn.row_factory = sqlite3.Row и при работе с записями сделать row = dict(row)
+6. По test_congratulations_sender.py:
++ для реализации теста надо замокать smtplib.SMTP и в тесте проверить, что в server.sendmail(sender, email[i], 
+msg.as_string()) уйдут ровно те данные, которые мы хотели отправить
